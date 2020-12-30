@@ -3,8 +3,8 @@ from glob import glob
 import xmltodict as xd
 from tqdm import tqdm
 
-annotation_path = r'annotations'
-yolo_label_save_path = r'images'
+annotation_path = r'.'
+yolo_label_save_path = r'.'
 
 class_names = []
 
@@ -31,7 +31,6 @@ def a2y():
         with open(file_path, 'rt') as f:
             xml_string = f.read().strip()
         res = xd.parse(xml_string)
-        img_file_name_without_extension = res['annotation']['filename'].split('.')[0]
         width = int(res['annotation']['size']['width'])
         height = int(res['annotation']['size']['height'])
         dict_or_dicts = res['annotation']['object']
@@ -41,7 +40,7 @@ def a2y():
                 yolo_label += parse_to_yolo(obj, width, height)
         else:
             yolo_label += parse_to_yolo(dict_or_dicts, width, height)
-        with open(rf'{yolo_label_save_path}\{img_file_name_without_extension}.txt', 'wt') as yolo_label_file:
+        with open(rf'{file_path[:-4]}.txt', 'wt') as yolo_label_file:
             yolo_label_file.write(yolo_label)
 
     classes_file_content = ''

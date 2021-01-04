@@ -23,7 +23,7 @@ def parse_to_yolo(o, img_width, img_height):
     except ValueError:
         class_names.append(class_name)
         class_index = class_names.index(class_name)
-    return f'{class_index} {cx} {cy} {w} {h}\n'
+    return f'{class_index} {cx:.6f} {cy:.6f} {w:.6f} {h:.6f}\n'
 
 
 def p2y():

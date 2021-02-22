@@ -1,9 +1,8 @@
-# p2y
+# P2Y(Pascal to Yolo)
 Pascal VOC annotation to YOLO label converter
 
 ## Usage
-annotation_path : annotation xml files paths<br>
-yolo_label_save_path : converted yolo label save path
+pascal_voc_annotation_path : annotation xml files path<br>
 
 ## Convert
 Input format : Pascal VOC annotation xml
@@ -61,13 +60,17 @@ Input format : Pascal VOC annotation xml
 
 Output format : YOLO label
 ```
-0 0.18359375 0.337431693989071 0.05859375 0.10109289617486339
-1 0.4013671875 0.3333333333333333 0.080078125 0.12021857923497267
-0 0.6689453125 0.3155737704918033 0.068359375 0.13934426229508196
+0 0.183593 0.337431 0.058593 0.101092
+1 0.401367 0.333333 0.080078 0.120218
+0 0.668945 0.315573 0.068359 0.139344
 ```
 
 ## classes.txt
-After saving all labels, classes.txt file is created.
+If there were classes.txt with the xml files, the original index order is maintained while converting.
+
+Otherwise, the order of the class indexes can be newly defined.
+
+Example of newly defined classes.txt
 ```
 without_mask
 with_mask

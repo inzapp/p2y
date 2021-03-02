@@ -80,8 +80,19 @@ def safe_delete_all_xml_files():
             if os.path.isfile(yolo_label_path):
                 if os.path.getsize(yolo_label_path) > 0:
                     os.remove(xml_path)
+                    
+
+def make_empty_label():
+    paths = glob('*.jpg')
+    for path in paths:
+        label_path = f'{path[:-4]}.txt'
+        if os.path.exists(label_path):
+            continue
+        with open(label_path, 'wt') as f:
+            pass
 
 
 if __name__ == '__main__':
     p2y()
     safe_delete_all_xml_files()
+    make_empty_label()

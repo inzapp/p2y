@@ -48,7 +48,7 @@ def p2y():
     load_pre_saved_classes_txt()
     xml_paths = glob(rf'{pascal_voc_annotation_path}\*.xml')
     for xml_path in tqdm(xml_paths):
-        with open(xml_path, 'rt') as f:
+        with open(xml_path, 'rt', encoding='utf8') as f:
             xml_string = f.read().strip()
         res = xd.parse(xml_string)
         width = int(res['annotation']['size']['width'])
@@ -88,6 +88,7 @@ def make_empty_label():
         label_path = f'{path[:-4]}.txt'
         if os.path.exists(label_path):
             continue
+        print(f'empty label generated : {label_path}')
         with open(label_path, 'wt') as f:
             pass
 
